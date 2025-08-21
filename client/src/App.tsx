@@ -6,11 +6,10 @@ import ReceiptDetail from "./components/ReceiptDetail.tsx";
 import Counter from "./components/Counter.tsx";
 import type { Receipt } from "./types.tsx";
 import UsersPanel from "./components/UserPanel.tsx";
-import ProductAllocation from "./components/ProductAllocation.tsx";
 
 export default function App() {
   const [tab, setTab] = useState<
-    "upload" | "list" | "detail" | "users" | "counter" | "allocation"
+    "upload" | "list" | "detail" | "users" | "counter"
   >("upload");
   const [receipts, setReceipts] = useState<Receipt[]>([]);
   const [current, setCurrent] = useState<Receipt | null>(null);
@@ -39,7 +38,6 @@ export default function App() {
         <button onClick={() => setTab("list")}>Liste</button>{" "}
         <button onClick={() => setTab("users")}>Personen</button>
         <button onClick={() => setTab("counter")}>Counter</button>
-        <button onClick={() => setTab("allocation")}>Zuteilung</button>
       </div>
 
       {tab === "upload" && <UploadForm onUploaded={(r) => open(r._id)} />}
@@ -47,7 +45,6 @@ export default function App() {
       {tab === "detail" && <ReceiptDetail receipt={current} />}
       {tab === "users" && <UsersPanel />}
       {tab === "counter" && <Counter />}
-      {tab === "allocation" && <ProductAllocation />}
     </div>
   );
 }
